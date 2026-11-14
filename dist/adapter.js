@@ -18,7 +18,7 @@ const missionCandidates = Object.entries(window.candidateProfiles).map(([id, seg
 
 window.marsAdapter = {
  candidates: missionCandidates,
- async analyze(id) {
+ async analyze(id, level = 1) {
   const candidate = missionCandidates.find(item => item.id === id);
   if (!candidate) throw new Error('자료가 없는 후보지입니다.');
   const direct = inspectProfile(missionProfile);
@@ -29,6 +29,8 @@ window.marsAdapter = {
   const uncertain = relayDifference > 1 || targetDifference > 1;
   const leg1 = inspectProfile(window.candidateProfiles[id][0], 2, relayHeight);
   const leg2 = inspectProfile(window.candidateProfiles[id][1], relayHeight, 2);
-  return {baseToRelay:leg1.clear, relayToTarget:leg2.clear, direct, leg1, leg2, uncertain, relayDifference, targetDifference};
+  const targetB = level === 2 ? inspectProfile(window.level2Profiles[id], relayHeight, 2) : null;
+  const targetBRelayDifference = targetB ? Math.abs(window.level2Profiles[id][0][elevationKey] - segments[0].at(-1)[elevationKey]) : 0;
+  return {baseToRelay:leg1.clear, relayToTarget:leg2.clear, targetB, direct, leg1, leg2, uncertain: uncertain || targetBRelayDifference > 1, relayDifference, targetDifference};
  }
 };
