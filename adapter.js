@@ -8,7 +8,7 @@ function inspectProfile(rows, startHeight = 2, endHeight = startHeight) {
  const maxAbove=Math.max(...gaps);
  return {clear:maxAbove<=0,maxAbove};
 }
-const missionProfile = window.marsProfiles['2'];
+const missionProfile = window.directProfile;
 const relayHeight = 12;
 const missionCandidates = Object.entries(window.candidateProfiles).map(([id, segments]) => {
  const point = segments[0].at(-1);
@@ -22,8 +22,13 @@ window.marsAdapter = {
   const candidate = missionCandidates.find(item => item.id === id);
   if (!candidate) throw new Error('자료가 없는 후보지입니다.');
   const direct = inspectProfile(missionProfile);
+  const elevationKey = 'MGS MOLA: Global DEM';
+  const segments = window.candidateProfiles[id];
+  const relayDifference = Math.abs(segments[0].at(-1)[elevationKey] - segments[1][0][elevationKey]);
+  const targetDifference = Math.abs(segments[1].at(-1)[elevationKey] - missionProfile.at(-1)[elevationKey]);
+  const uncertain = relayDifference > 1 || targetDifference > 1;
   const leg1 = inspectProfile(window.candidateProfiles[id][0], 2, relayHeight);
   const leg2 = inspectProfile(window.candidateProfiles[id][1], relayHeight, 2);
-  return {baseToRelay:leg1.clear, relayToTarget:leg2.clear, direct, leg1, leg2};
+  return {baseToRelay:leg1.clear, relayToTarget:leg2.clear, direct, leg1, leg2, uncertain, relayDifference, targetDifference};
  }
 };
