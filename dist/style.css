@@ -3,3 +3,5 @@
 #coordinate-panel{margin-top:26px;padding:24px;background:#1c231d;border:1px solid #374331}#coordinate-map svg{background:#18221b}.coords-list{display:flex;gap:20px;flex-wrap:wrap}.coords-list p{font-size:13px;line-height:1.7}
 
 #level3-candidates{display:flex;gap:12px;flex-wrap:wrap}#level3-check{width:100%}#level3-result{margin-top:24px;padding:24px;border:1px solid #53634b;background:#1c231d}#level3-panel details{margin-top:24px;padding:20px;border:1px solid #374331}#level3-panel summary{cursor:pointer}
+
+.mars-color #map image, .mars-color #terrain2d image{filter:sepia(.5) saturate(1.25) hue-rotate(335deg)}
