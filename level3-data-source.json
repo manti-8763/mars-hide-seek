@@ -1,0 +1,13 @@
+{
+  "source": "NASA Mars Trek MGS MOLA Global DEM",
+  "endpoint": "https://trek.nasa.gov/mars/TrekServices/ws/elevationProfile/multiDEM",
+  "retrieved": "2026-11-14",
+  "target": [
+    137.48999999999998,
+    -4.62
+  ],
+  "samplesRequested": 400,
+  "radiusInMeters": 3390000,
+  "interpolation": false,
+  "assumptions": "Flat LOS, base/target antenna 2m, relay 12m; no curvature/refraction/radio model"
+}
