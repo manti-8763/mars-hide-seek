@@ -2,7 +2,7 @@ import {bindTerrainMaterial} from './appearance.mjs';
 import {makeTerrain, inside, groundAt, evalLink, linkProfile, resolveRadio, PRESETS} from './physics.mjs';
 const $=id=>document.getElementById(id), base=[3500,3500],target=[4000,5500];
 const stage=new URLSearchParams(location.search).get('level')==='2'?2:1, target2=[3000,5200];
-if(stage===2){document.querySelector('small').textContent='LEVEL 2 / 두 개의 신호';document.querySelector('h1').textContent='두 탐사 지점을 연결하세요';document.querySelector('h1 + p').textContent='중계소 하나로 탐사 지점 A와 B의 통신 경로를 모두 확보하세요.';document.getElementById('target2').removeAttribute('hidden');}
+if(stage===2){document.querySelector('small').textContent='LEVEL 2 · MISSION';document.querySelector('h1').textContent='두 갈래의 신호';document.querySelector('h1 + p').textContent='중계소 하나로 탐사 지점 A와 B의 통신 경로를 모두 확보하세요.';document.getElementById('target2').removeAttribute('hidden');}
 const sites={};let selected=null,T,update3d=()=>{},installed=false;
 const radio=resolveRadio(PRESETS.sband);
 function link(a,b,ha,hb){const out=linkProfile(T,radio,...a,ha,...b,hb,T.res);const gaps=Array.from(out.d,(d,i)=>out.zFlat[i]-(out.za+(out.zb-out.za)*d/out.D)).slice(1,-1);out.blockage=Math.max(...gaps);out.visible=Number.isFinite(out.blockage)&&out.blockage<=0;return out;}
