@@ -97,10 +97,11 @@ drawCoordinateMap();
 window.addEventListener('message',e=>{
  if(e.origin!==location.origin)return;
  const mission=document.getElementById('level1-frame'), host=document.getElementById('level1-integrated');
- if(e.source===mission.contentWindow&&e.data?.type==='open-level1-tablet'){
+ if(e.source===mission.contentWindow&&['open-level1-tablet','open-level5-field'].includes(e.data?.type)){
+  const stage=e.data.type==='open-level5-field'?5:1;
   let panel=document.getElementById('tablet-trial-panel');
   if(!panel){panel=document.createElement('section');panel.id='tablet-trial-panel';panel.innerHTML='<p>우주비행사 현장 시점 · LEVEL 1</p><button id="tablet-back" type="button">← 미션으로 돌아가기</button><iframe id="tablet-trial-frame" title="LEVEL 1 탐사 태블릿" style="width:100%;height:1100px;border:0"></iframe>';host.prepend(panel);panel.querySelector('#tablet-back').onclick=()=>{panel.hidden=true;mission.hidden=false;mission.scrollIntoView({behavior:'smooth',block:'start'});};}
-  mission.hidden=true;panel.hidden=false;panel.querySelector('iframe').src='device/mission-hud.html';panel.scrollIntoView({behavior:'smooth',block:'start'});
+  panel.querySelector('p').textContent=`우주비행사 현장 시점 · LEVEL ${stage}`;panel.querySelector('iframe').title=`LEVEL ${stage} 우주비행사 현장 화면`;mission.hidden=true;panel.hidden=false;panel.querySelector('iframe').src=`device/mission-hud.html?stage=${stage}`;panel.scrollIntoView({behavior:'smooth',block:'start'});
  }
 });
 

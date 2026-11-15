@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {makeTerrain} from '../integration/physics.mjs';
+import {scienceRadio} from '../integration/science.mjs';
+import {assessNetwork} from '../integration/network.mjs';
+const meta=JSON.parse(fs.readFileSync(new URL('../integration/data/meta.json',import.meta.url)));const bytes=fs.readFileSync(new URL('../integration/data/terrain_8m.f32',import.meta.url));const t=makeTerrain(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),meta);
+const base={name:'기지',p:[3500,3500],h:4},goal={name:'목표',p:[500,4250],h:2};
+const r1={name:'중계소 1',p:[1600,4700],h:3},r2={name:'중계소 2',p:[400,2800],h:3};
+const full=assessNetwork(t,scienceRadio('video'),[base,r1,r2,goal]);assert.ok(full.route,'known recovery path');
+assert.deepEqual(full.route.map(i=>[base,r1,r2,goal][i].name),['기지','중계소 1','중계소 2','목표']);
+const failed=assessNetwork(t,scienceRadio('video'),[base,r1,goal]);assert.equal(failed.route,null,'failure without second relay');
+const direct=assessNetwork(t,scienceRadio('summary'),[base,{name:'중계소',p:[1500,4600],h:3},goal]);assert.ok(direct.route,'summary recovery route');
+console.log('LEVEL 5: connected, fault and both recovery modes passed');
