@@ -31,6 +31,8 @@ The active missions use a processed elevation grid and an orthorectified image d
 - [HiRISE Digital Terrain Model DTEEC_019698_1750_019988_1750_U01](https://stac.astrogeology.usgs.gov/api/collections/mro_hirise_socet_dtms/items/DTEEC_019698_1750_019988_1750_U01), NASA/JPL/University of Arizona/USGS. The 1 m source was averaged to an approximately 8 m grid for the game.
 - [HiRISE RED orthorectified image ESP_019698_1750](https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_019698_1750_ESP_019988_1750/ESP_019698_1750_RED_A_01_ORTHO.tif), NASA/JPL/University of Arizona/USGS. The image is resampled and colored for display.
 
+During early terrain investigation and prototyping, the team used [NASA Mars Trek](https://trek.nasa.gov/mars/) to export elevation profiles and compare [Mars Global Surveyor MOLA global elevation data](https://astrogeology.usgs.gov/search/map/mars_mgs_mola_dem_463m) with HiRISE elevation samples. Those earlier profile CSVs are preserved in [`data/`](data/). The current integrated Levels 1–5 use the HiRISE grid described above for terrain and link calculations; they do not use the earlier MOLA CSVs for live link evaluation.
+
 The game uses a simplified educational S-band radio model and sampled terrain profiles. Levels 1–2 require line of sight and at least 3 dB signal margin for each required link. Later levels also allow an obstructed link when the estimated signal after diffraction meets the threshold. The 3D overview exaggerates terrain height for readability.
 
 Mission characters, selected locations, equipment settings, setup times and scenarios are game assumptions. The calculations are simplified and are **not validated for real mission planning or safety decisions**.
