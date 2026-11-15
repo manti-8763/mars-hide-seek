@@ -5,3 +5,7 @@
 #level3-candidates{display:flex;gap:12px;flex-wrap:wrap}#level3-check{width:100%}#level3-result{margin-top:24px;padding:24px;border:1px solid #53634b;background:#1c231d}#level3-panel details{margin-top:24px;padding:20px;border:1px solid #374331}#level3-panel summary{cursor:pointer}
 
 .mars-color #map image, .mars-color #terrain2d image{filter:sepia(.5) saturate(1.25) hue-rotate(335deg)}
+
+/* Keep controls beside the terrain at tablet and split-screen widths. */
+@media (min-width:520px){.layout{grid-template-columns:minmax(0,1.5fr) minmax(175px,.8fr);gap:12px}.layout>aside{padding:16px;align-self:start;position:sticky;top:8px}.layout>aside button{max-width:100%}}
+@media (max-width:519px){.layout>aside{position:sticky;bottom:0;z-index:4;max-height:40vh;overflow:auto;box-shadow:0 -6px 18px #0008}}

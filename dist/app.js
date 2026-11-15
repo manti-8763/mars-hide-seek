@@ -83,11 +83,11 @@ drawCoordinateMap();
 
 
 // Local testing shortcut: never displayed on the hosted website.
-if (['localhost','127.0.0.1','::1','[::1]'].includes(location.hostname)) {
+{
  const panel=document.createElement('section');
  panel.id='developer-levels';
  panel.style.cssText='margin:20px 0;padding:16px;background:#2c3228;border:1px solid #82946c';
- panel.innerHTML='<strong>개발용 테스트 · 레벨 바로 이동</strong><p>이 컴퓨터에서만 보이며, 이동하면 현재 레벨의 진행 상태가 초기화됩니다.</p><div style="display:flex;gap:8px;flex-wrap:wrap"></div>';
+ panel.innerHTML='<strong>테스트용 · 레벨 바로 이동</strong><p>레벨을 자유롭게 살펴볼 수 있습니다. 이동하면 현재 레벨의 진행 상태가 초기화됩니다. LEVEL 5는 LEVEL 4를 완료하지 않으면 테스트용 배치를 사용합니다.</p><div style="display:flex;gap:8px;flex-wrap:wrap"></div>';
  const paths=['integration/index.html','integration/index.html?level=2','integration/level3.html','integration/level4.html','integration/level5.html'];
  paths.forEach((path,i)=>{const button=document.createElement('button');button.type='button';button.className='candidate';button.textContent=`LEVEL ${i+1}`;button.onclick=()=>{document.getElementById('brief').hidden=true;const game=document.getElementById('game');game.hidden=false;for(const child of game.children)child.hidden=child.id!=='level1-integrated';const panel=document.getElementById('level1-integrated');panel.hidden=false;for(const id of ['integrated-next','integrated-next3','integrated-next4','integrated-next5'])document.getElementById(id).hidden=true;document.getElementById('level1-frame').src=path;panel.scrollIntoView({behavior:'smooth',block:'start'});};panel.querySelector('div').append(button)});
  document.getElementById('brief').before(panel);
