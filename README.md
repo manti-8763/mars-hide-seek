@@ -1,33 +1,50 @@
-# Mars Hide & Seek — LEVEL 1 prototype
+# Mars 404: Hide & Seek
 
-index.html을 브라우저로 열면 실행됩니다. 설치나 빌드가 필요하지 않습니다.
+### [▶ Play the game](https://mars-hide-seek-404.jms20c.chatgpt.site)
 
-## 역할과 파일
-- 예진: 시나리오 원안 작성. 화면 문구 검토와 플레이 테스트.
-- 정현 담당 영역: index.html, style.css, app.js (게임 흐름/화면). 현재 초안은 Codex가 생성.
-- 주원 담당 예정 영역: 실제 지형 자료, 지도, 가시선 분석. 현재 adapter.js는 Codex가 만든 가상 결과만 포함하며 주원님의 구현이 아닙니다.
+[View the seven-slide project demonstration](https://docs.google.com/presentation/d/1jagqPLYAW63mF0KAHdo_mQrZhF26YUiJ/edit?usp=drive_link)
 
-## 연결 약속 (제안, 팀 합의 필요)
-window.marsAdapter.candidates: [{id:'A', x:270, y:310}, ...]
-window.marsAdapter.analyze(candidateId): Promise<{baseToRelay:boolean, relayToTarget:boolean, mode:'mock'|'real'}>
+**Close does not mean connected.** Mars 404 is an educational exploration game about restoring communication when Martian terrain blocks a signal. Players investigate the landscape, place a limited number of relays, and reconnect a base and exploration crews.
 
-현재 x,y는 화면 좌표입니다. 실제 지도 좌표와 혼용하지 마세요. 실제 지도 모듈이 들어오면 SVG 및 좌표 표시 부분을 교체해야 합니다. 결과를 실제 분석으로 바꿀 때 상단의 가상 자료 안내도 실제 자료 출처와 한계 안내로 함께 수정하세요. mock 모드를 real로 변경하는 것만으로 실제 분석이 되지 않습니다.
+## How to play
 
-## 확인 순서
-1. 시작 → 설치 버튼 비활성화 확인
-2. A 선택/설치 → 기지 구간 확보, 목표 구간 차단, 잔여 0
-3. 초기화 → 잔여 1, 후보지 선택 해제
-4. B 선택/설치 → 두 구간 확보, 성공
-5. C 선택/설치 → 기지 구간 차단
+1. Start a mission and read its objective.
+2. Drag the 3D terrain to rotate it, scroll to zoom, and click a location on the terrain or 2D map to inspect it.
+3. Review the estimated link conditions and open the terrain profiles. Orange shows terrain; green shows the line between antennas.
+4. Place a relay. In missions with several relays, place additional relays as needed, then select **Check network**. If a link fails, investigate another location.
+5. Use **Show hint** for guidance. **Need help? Explore another mission** opens levels directly; skipped missions are not marked complete.
 
-LEVEL 2/3, 실제 NASA 자료, 면적 확보율, 점수는 아직 구현하지 않았습니다.
+## Missions
 
-## 진행 기록
-2026-11-14: 사용자가 공유한 팀 대화에서 LEVEL 1 역할 분담에 주원님 동의 확인. 시나리오 기반 화면 초안과 임시 분석 연결부 제작. JS 문법 검사 통과. 브라우저 시각/조작 검증은 아직 미수행.
+- **1 · The Lost Astronaut:** restore a link between the base and an astronaut using one relay.
+- **2 · Two Signals:** connect two exploration sites using one relay.
+- **3 · Into the Unknown:** connect a distant destination with up to three relays; fewer can also succeed.
+- **4 · Records of Two Crews:** connect both crews within a planned 45 minutes. Choose between faster live video and a more signal-tolerant science summary; steeper sites take longer to set up. This is a calculated budget, not a real-time countdown.
+- **5 · Beyond the Broken Signal:** extend the network and respond to a relay failure. A completed Level 4 layout carries over; direct access uses an example layout when none is available.
 
-## CSV 단면 시험 추가 (2026-11-14)
-사용자가 직접 추출한 ElevationProfile2/3/4.csv를 data/에 원본 보존하고 profiles.js로 변환했습니다. 기존 가상 A/B/C 판정은 후보 A 하나의 실제 CSV 표본 검사로 교체했습니다. 위의 초기 버전 설명과 테스트 순서 중 가상 B 성공 부분은 더 이상 적용되지 않습니다.
+An astronaut field view is available in Level 1 after selecting a location and in Level 5 after the failure. Its overview map shows bearings and viewing direction; a marker does not guarantee line of sight or a working link.
 
-HiRISE 열 기준, 양 끝 안테나 2m, 고도 단위 m 가정. 평면 단면의 직선과 중간 표본 높이를 비교합니다. 원본 DEM 메타데이터와 단위, 곡률, 표본 간 누락은 추가 검증이 필요합니다. 직접 경로 약 3.24m 돌출, 첫 구간 약 5.36m 돌출, 둘째 구간 표본상 가림 없음. 끝점 약 20/29m 불일치로 전체 경로 연결 여부를 확정하지 않습니다. 지도는 여전히 가상 개념도입니다. 성공 후보는 아직 없습니다.
+## Mars data and model
 
-Node 문법 검사와 실제 CSV 3개의 예상 결과 검증 통과. 브라우저 조작 검증은 미완료.
+The active missions use a processed elevation grid and an orthorectified image derived from HiRISE observations of the lower Mount Sharp area in Gale crater:
+
+- [HiRISE Digital Terrain Model DTEEC_019698_1750_019988_1750_U01](https://stac.astrogeology.usgs.gov/api/collections/mro_hirise_socet_dtms/items/DTEEC_019698_1750_019988_1750_U01), NASA/JPL/University of Arizona/USGS. The 1 m source was averaged to an approximately 8 m grid for the game.
+- [HiRISE RED orthorectified image ESP_019698_1750](https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_019698_1750_ESP_019988_1750/ESP_019698_1750_RED_A_01_ORTHO.tif), NASA/JPL/University of Arizona/USGS. The image is resampled and colored for display.
+
+The game uses a simplified educational S-band radio model and sampled terrain profiles. Levels 1–2 require line of sight and at least 3 dB signal margin for each required link. Later levels also allow an obstructed link when the estimated signal after diffraction meets the threshold. The 3D overview exaggerates terrain height for readability.
+
+Mission characters, selected locations, equipment settings, setup times and scenarios are game assumptions. The calculations are simplified and are **not validated for real mission planning or safety decisions**.
+
+## Technology and running locally
+
+The game uses HTML, CSS, JavaScript and [Three.js](https://threejs.org/). Start a local web server in this directory and open the address it provides; opening the HTML file directly can prevent terrain data from loading. A network connection is needed to load Three.js from its CDN.
+
+```sh
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000/`.
+
+## AI use
+
+The team used OpenAI tools to assist with brainstorming, research, coding, debugging and writing. AI-generated images in the presentation are identified there. The team directed the project, reviewed outputs and made the final design and implementation decisions.
