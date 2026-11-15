@@ -13,3 +13,5 @@
 /* Keep selected-site information next to the installation action. */
 .layout>aside #preview{margin:12px 0;padding:12px;background:#111a14;border:1px solid #53634b;overflow-wrap:anywhere;font-size:14px;line-height:1.45}.layout>aside #preview h2{font-size:18px;margin:0 0 8px}.layout>aside #preview ul{padding-left:20px;margin:8px 0}.layout>aside #preview li{margin:7px 0}.layout>aside #preview details{margin:8px 0}.layout>aside #preview summary{cursor:pointer;color:#f4ac78}.layout>aside #preview svg{min-width:0}.layout>aside #preview .profile-card h3{font-size:14px}@media(min-width:520px){.layout>aside{max-height:calc(100vh - 16px);overflow:auto}}
 .layout>aside #install,.layout>aside #check{position:sticky;bottom:0;z-index:2;box-shadow:0 -3px 8px #1118}
+
+.mission-guide{padding:12px;background:#111a14;border-left:3px solid #f4ac78;font-size:14px;line-height:1.5}.mission-guide p{margin:6px 0 12px}.mission-guide ol{padding-left:20px;margin:6px 0}.mission-guide li{margin:5px 0}
