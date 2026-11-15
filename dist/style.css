@@ -9,3 +9,7 @@
 /* Keep controls beside the terrain at tablet and split-screen widths. */
 @media (min-width:520px){.layout{grid-template-columns:minmax(0,1.5fr) minmax(175px,.8fr);gap:12px}.layout>aside{padding:16px;align-self:start;position:sticky;top:8px}.layout>aside button{max-width:100%}}
 @media (max-width:519px){.layout>aside{position:sticky;bottom:0;z-index:4;max-height:40vh;overflow:auto;box-shadow:0 -6px 18px #0008}}
+
+/* Keep selected-site information next to the installation action. */
+.layout>aside #preview{margin:12px 0;padding:12px;background:#111a14;border:1px solid #53634b;overflow-wrap:anywhere;font-size:14px;line-height:1.45}.layout>aside #preview h2{font-size:18px;margin:0 0 8px}.layout>aside #preview ul{padding-left:20px;margin:8px 0}.layout>aside #preview li{margin:7px 0}.layout>aside #preview details{margin:8px 0}.layout>aside #preview summary{cursor:pointer;color:#f4ac78}.layout>aside #preview svg{min-width:0}.layout>aside #preview .profile-card h3{font-size:14px}@media(min-width:520px){.layout>aside{max-height:calc(100vh - 16px);overflow:auto}}
+.layout>aside #install,.layout>aside #check{position:sticky;bottom:0;z-index:2;box-shadow:0 -3px 8px #1118}
