@@ -28,7 +28,7 @@ if (new URLSearchParams(location.search).get('level1trial') === '1') {
     A.clearRelays(); A.addNode('lander',...trial.base); A.addNode('relay',...trial.relay); A.addNode('astro',...trial.target);
     const radio=PH.resolveRadio(PH.PRESETS.sband);
     const describe=(a,b,ha,hb,i)=>{const v=PH.linkProfile(S.T,radio,...a,ha,...b,hb,S.T.res);const gap=Math.max(...Array.from(v.d,(d,k)=>v.zFlat[k]-(v.za+(v.zb-v.za)*d/v.D)).slice(1,-1));const visible=Number.isFinite(gap)&&gap<=0;return `게임 ${trial.margin[i].toFixed(1)} dB / 태블릿 ${v.margin.toFixed(1)} dB · 가시선 ${visible?'확보':'가림'} · LEVEL 1 ${visible&&v.margin>=3?'기준 충족':'기준 미달'}`;};
-    note.innerHTML=`<strong>LEVEL 1 좌표 비교 시험판</strong><p>기지·선택 중계소·탐사 A를 지도에 표시했습니다. 아래 두 구간은 LEVEL 1과 같은 조건(가시선과 3 dB 이상)으로 비교합니다.</p><p>기지 → 중계소: ${describe(trial.base,trial.relay,4,3,0)}<br>중계소 → 탐사 A: ${describe(trial.relay,trial.target,3,2,1)}</p><p>중요: 화면의 걷기 경로·현재 위치·기타 수치는 주원님 원래 시뮬레이션입니다. 게임 진행이나 설치 결과와 자동 동기화되지 않습니다. 다른 위치는 미션으로 돌아가 선택한 뒤 다시 열어주세요.</p>`;
+    note.innerHTML=`<strong>LEVEL 1 좌표 비교 시험판</strong><p>기지·선택 중계소·탐사 A를 지도에 표시했습니다. 아래 두 구간은 LEVEL 1과 같은 조건(가시선과 3 dB 이상)으로 비교합니다.</p><p>기지 → 중계소: ${describe(trial.base,trial.relay,4,3,0)}<br>중계소 → 탐사 A: ${describe(trial.relay,trial.target,3,2,1)}</p><p>중요: 화면의 걷기 경로·현재 위치·기타 수치는 별도 시뮬레이션의 정보입니다. 게임 진행이나 설치 결과와 자동 동기화되지 않습니다. 다른 위치는 미션으로 돌아가 선택한 뒤 다시 열어주세요.</p>`;
   } else { note.textContent='LEVEL 1 선택 정보가 없습니다. 게임에서 지점을 선택하고 태블릿 비교 버튼을 눌러주세요.'; }
   document.querySelector('.app').before(note);
 }
