@@ -1,0 +1,46 @@
+{
+  "name": "Lower Mount Sharp, Gale crater",
+  "width": 928,
+  "height": 2283,
+  "res_m": 8.096154845417505,
+  "tex": {
+    "file": "ortho_4m.jpg",
+    "width": 1856,
+    "height": 4567
+  },
+  "origin_proj_m": [
+    8139139.287483739,
+    -280315.578653001
+  ],
+  "crs": "PROJCS[\"Mars (2015) - Sphere / Ocentric / Equirectangular, clon = 0\",GEOGCS[\"Mars (2015) - Sphere / Ocentric\",DATUM[\"Mars (2015) - Sphere\",SPHEROID[\"Mars (2015) - Sphere\",3396190,0,AUTHORITY[\"IAU\",\"49900\"]],AUTHORITY[\"IAU\",\"49900\"]],PRIMEM[\"Reference Meridian\",0,AUTHORITY[\"IAU\",\"49900\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"IAU\",\"49900\"]],PROJECTION[\"Equirectangular\"],PARAMETER[\"standard_parallel_1\",0],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"IAU\",\"49910\"]]",
+  "lonlat_nw": [
+    137.3122028042996,
+    -4.7290933630286975
+  ],
+  "lonlat_se": [
+    137.4389555674595,
+    -5.040921550845609
+  ],
+  "z_min": -4324.4462890625,
+  "z_max": -2080.80517578125,
+  "sources": [
+    {
+      "what": "HiRISE DTM DTEEC_019698_1750_019988_1750_U01 (1 m, averaged to 8 m)",
+      "url": "https://stac.astrogeology.usgs.gov/api/collections/mro_hirise_socet_dtms/items/DTEEC_019698_1750_019988_1750_U01",
+      "license": "CC0-1.0",
+      "credit": "NASA/JPL/University of Arizona/USGS"
+    },
+    {
+      "what": "HiRISE RED orthoimage ESP_019698_1750 (resampled to 4 m)",
+      "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_019698_1750_ESP_019988_1750/ESP_019698_1750_RED_A_01_ORTHO.tif",
+      "license": "CC0-1.0",
+      "credit": "NASA/JPL/University of Arizona/USGS"
+    },
+    {
+      "what": "Curiosity (MSL) waypoints",
+      "url": "https://mars.nasa.gov/mmgis-maps/MSL/Layers/json/",
+      "license": "NASA public release (US public domain)",
+      "credit": "NASA/JPL-Caltech"
+    }
+  ]
+}

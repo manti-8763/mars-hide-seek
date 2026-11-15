@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기지 상황판 · Mars EVA</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/base.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="title"><b>기지 상황판</b><span class="muted">Gale 크레이터 · Mount Sharp 하부 · HiRISE DTM 8 m</span></div>
+    <div class="sync" id="sync"><span class="dot"></span><span id="syncText"></span></div>
+    <div class="send">
+      <span class="send-note" id="sendNote"></span>
+      <button type="button" id="pull" hidden>현장 계획 불러오기</button>
+      <button type="button" class="primary" id="send">현장에 계획 보내기</button>
+    </div>
+  </header>
+
+  <aside class="left">
+    <div id="tabs"></div>
+    <div class="panel" id="panel"></div>
+  </aside>
+
+  <section class="map">
+    <div id="view" class="view"></div>
+    <div class="map-tools" id="tools"></div>
+    <div class="map-legend">
+      <i style="background:var(--ok)"></i>안정 <i style="background:var(--warn)"></i>불안정 <i style="background:var(--bad)"></i>끊김
+      <span class="muted">· 계획한 중계기 모두 기준 · 주황 선: EVA 경로</span>
+    </div>
+    <div class="hover num" id="hover"></div>
+  </section>
+
+  <aside class="right">
+    <section class="card" id="crew">
+      <div class="card-head"><b>현장</b><span class="card-note" id="crewNote"></span></div>
+      <div id="crewBody"></div>
+    </section>
+    <section class="card tiles" id="tiles"></section>
+    <section class="card nodes-card">
+      <div class="card-head"><b>노드</b><span class="card-note">누르면 아래 단면에 표시</span></div>
+      <div class="nodes" id="nodes"></div>
+    </section>
+  </aside>
+
+  <section class="bottom">
+    <div class="bottom-head"><div id="chartTabs"></div><span class="muted" id="chartNote"></span></div>
+    <canvas id="chart"></canvas>
+  </section>
+</div>
+<div class="busy" id="busy"></div>
+<div class="loading" id="loading">상황판 준비 중…</div>
+<script type="module" src="js/base.js"></script>
+</body>
+</html>

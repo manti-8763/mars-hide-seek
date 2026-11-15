@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>손목·태블릿 · Mars EVA</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/tablet.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="link-now" id="linkNow">
+      <span class="dot" id="nowDot"></span>
+      <b class="num" id="nowMargin">—</b>
+      <span id="nowVia" class="muted"></span>
+    </div>
+    <div class="walk num" id="walk"></div>
+    <div class="peers">
+      <span id="peerHud"><span class="dot"></span> 헬멧</span>
+      <span id="peerBase"><span class="dot"></span> 기지</span>
+    </div>
+  </header>
+
+  <section class="map">
+    <div id="view" class="view"></div>
+    <div class="map-tools">
+      <button type="button" id="viewMe">내 위치</button>
+      <button type="button" id="viewAll">전체</button>
+    </div>
+    <div class="map-legend" id="mapLegend"></div>
+  </section>
+
+  <aside class="side">
+    <section class="card" id="hudCard">
+      <div class="card-head"><b>헬멧 표시</b><span class="card-note" id="hudNote"></span></div>
+      <div id="hudMode"></div>
+      <div id="hudInfo"></div>
+    </section>
+
+    <section class="card tiles" id="tiles"></section>
+
+    <section class="card">
+      <div class="card-head"><b>중계기</b><span class="card-note num" id="relayNote"></span></div>
+      <div class="row"><span class="muted">새로 놓을 개수</span><span id="kStep"></span></div>
+      <div class="row two"><button type="button" class="primary" id="autoPlace">자동 배치 계산</button><button type="button" id="dropHere">여기에 설치</button></div>
+      <div class="result" id="optResult"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head"><b>기지 동기화</b><span class="card-note" id="baseNote"></span></div>
+      <div id="baseToggle"></div>
+    </section>
+
+    <section class="card sim">
+      <div class="card-head"><b>시뮬레이션</b><span class="card-note">시연용</span></div>
+      <div class="row three"><button type="button" id="play">▶ 걷기</button><button type="button" id="reset">⟲ 처음</button><span id="speed"></span></div>
+      <div class="row two" id="hudLinkToggle"></div>
+    </section>
+  </aside>
+
+  <section class="bottom" id="bottom">
+    <div class="chart">
+      <div class="chart-head"><b>EVA 경로의 링크 마진</b><span class="muted">흰 선: 지금 위치 · 파란 선: 중계기 설치 지점 (점선은 아직)</span></div>
+      <canvas id="timeline"></canvas>
+    </div>
+    <div class="strips-wrap" id="stripsWrap" hidden>
+      <div class="chart-head"><b>단면</b><span class="muted">헬멧 대신 표시</span></div>
+      <div class="strips" id="strips"></div>
+    </div>
+  </section>
+</div>
+<div class="busy" id="busy"></div>
+<div class="loading" id="loading">손목 기기 준비 중…</div>
+<script type="module" src="js/tablet.js"></script>
+</body>
+</html>

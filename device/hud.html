@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>헬멧 HUD · Mars EVA</title>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/hud.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="view" class="view"></div>
+
+<div class="hud" id="hud">
+  <div class="hud-status" id="status">
+    <div class="st-main"><span class="dot" id="stDot"></span><b id="stMargin" class="num">—</b><span id="stVia"></span></div>
+    <div class="st-ahead num" id="stAhead"></div>
+  </div>
+
+  <div class="hud-corner">
+    <span id="modeName"></span>
+    <span class="sep">·</span>
+    <span><span class="dot" id="wristDot"></span> 손목 기기</span>
+  </div>
+
+  <div class="hud-legend" id="legend"></div>
+  <div class="hud-strips" id="strips"></div>
+
+  <div class="hud-keys">
+    <button type="button" id="key1"><kbd>1</kbd> 지형 표시</button>
+    <button type="button" id="key2"><kbd>2</kbd> 단면</button>
+    <button type="button" id="key3"><kbd>3</kbd> 중계기 설치</button>
+  </div>
+  <div class="hud-msg" id="hudMsg" hidden></div>
+</div>
+
+<button type="button" class="sim-btn" id="simBtn" title="시연용 시뮬레이션 조작">SIM</button>
+<div class="sim-panel" id="simPanel" hidden>
+  <div class="sim-title">시뮬레이션 (시연용)</div>
+  <div class="sim-row"><button type="button" id="simPlay">▶ 걷기</button><button type="button" id="simReset">⟲ 처음</button></div>
+  <div class="sim-row"><span class="muted">속도</span><span id="simSpeed"></span></div>
+  <div class="sim-row" id="simLink"></div>
+  <p class="sim-help">드래그: 고개 돌리기 · 더블클릭: 정면 보기<br>Space: 걷기/멈춤 · 1: 지형 표시 바꾸기 · 2: 단면 켜기/끄기 · 3: 중계기 설치 (두 번)</p>
+</div>
+
+<div class="busy" id="busy"></div>
+<div class="loading" id="loading">헬멧 디스플레이 준비 중…</div>
+<script type="module" src="js/hud.js"></script>
+</body>
+</html>

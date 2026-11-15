@@ -92,3 +92,23 @@ drawCoordinateMap();
  paths.forEach((path,i)=>{const button=document.createElement('button');button.type='button';button.className='candidate';button.textContent=`LEVEL ${i+1}`;button.onclick=()=>{document.getElementById('brief').hidden=true;const game=document.getElementById('game');game.hidden=false;for(const child of game.children)child.hidden=child.id!=='level1-integrated';const panel=document.getElementById('level1-integrated');panel.hidden=false;for(const id of ['integrated-next','integrated-next3','integrated-next4','integrated-next5'])document.getElementById(id).hidden=true;document.getElementById('level1-frame').src=path;panel.scrollIntoView({behavior:'smooth',block:'start'});};panel.querySelector('div').append(button)});
  document.getElementById('brief').before(panel);
 }
+
+// Keep the mission iframe alive while switching to the tablet view.
+window.addEventListener('message',e=>{
+ if(e.origin!==location.origin)return;
+ const mission=document.getElementById('level1-frame'), host=document.getElementById('level1-integrated');
+ if(e.source===mission.contentWindow&&e.data?.type==='open-level1-tablet'){
+  let panel=document.getElementById('tablet-trial-panel');
+  if(!panel){panel=document.createElement('section');panel.id='tablet-trial-panel';panel.innerHTML='<p>탐사 현장 태블릿 · LEVEL 1 비교 시험판</p><button id="tablet-back" type="button">← 미션으로 돌아가기</button><iframe id="tablet-trial-frame" title="LEVEL 1 탐사 태블릿" style="width:100%;height:1100px;border:0"></iframe>';host.prepend(panel);panel.querySelector('#tablet-back').onclick=()=>{panel.hidden=true;mission.hidden=false;mission.scrollIntoView({behavior:'smooth',block:'start'});};}
+  mission.hidden=true;panel.hidden=false;panel.querySelector('iframe').src='device/tablet.html?level1trial=1';panel.scrollIntoView({behavior:'smooth',block:'start'});
+ }
+});
+
+// Switching level shortcuts must close the tablet view and show the mission frame.
+document.addEventListener('click',event=>{
+ const el=event.target.closest('button');
+ if(!el || !(el.closest('#developer-levels') || /^integrated-next/.test(el.id)))return;
+ const panel=document.getElementById('tablet-trial-panel');
+ if(panel)panel.hidden=true;
+ document.getElementById('level1-frame').hidden=false;
+},true);

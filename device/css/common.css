@@ -1,0 +1,51 @@
+/* Shared look of the three device screens: one dark, low-glare palette (field + mission-control). */
+:root {
+  --bg: #0e0c0b; --panel: #171310; --panel-2: #1f1915; --line: #2b231d; --text: #efe6dc; --muted: #9c8c7e;
+  --accent: #e8743b; --ok: #3fbf6a; --warn: #e9b949; --bad: #e5484d; --link: #7cc4ff; --new: #46d7ff;
+  --radius: 10px;
+  color-scheme: dark; /* deliberate single dark look: field devices and the base screen share it */
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--text);
+  font: 14px/1.4 system-ui, "Segoe UI", "Malgun Gothic", sans-serif; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 12px; cursor: pointer; touch-action: manipulation; user-select: none; }
+button:hover { border-color: #4a3c31; }
+button:active { transform: translateY(1px); }
+button:disabled { opacity: .45; cursor: default; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #1a0d05; font-weight: 650; }
+button.toggle.on { background: rgba(232,116,59,.16); border-color: var(--accent); color: #ffd2b8; }
+canvas { display: block; }
+.ok { color: var(--ok); } .warn { color: var(--warn); } .bad { color: var(--bad); } .muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* segmented control */
+.seg { display: flex; background: var(--bg); border: 1px solid var(--line); border-radius: 9px; padding: 3px; gap: 3px; }
+.seg button { flex: 1; border: 0; background: transparent; border-radius: 6px; padding: 8px 6px; color: var(--muted); white-space: nowrap; }
+.seg button.on { background: var(--panel-2); color: var(--text); box-shadow: inset 0 0 0 1px #4a3c31; }
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+.stepper button { border: 0; border-radius: 0; padding: 8px 14px; background: var(--panel-2); font-size: 16px; line-height: 1; }
+.stepper .step-val { min-width: 54px; text-align: center; font-variant-numeric: tabular-nums; }
+
+/* 3D view and its labels */
+.view { position: absolute; inset: 0; overflow: hidden; }
+.view > canvas.three { width: 100%; height: 100%; display: block; touch-action: none; }
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lbl { position: absolute; transform: translate(-50%, -125%); padding: 2px 7px; border-radius: 5px; font-size: 12px; white-space: nowrap;
+  background: rgba(10,8,6,.72); border: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.lbl.ok { border-color: var(--ok); } .lbl.warn { border-color: var(--warn); } .lbl.bad { border-color: var(--bad); }
+.lbl.planned { opacity: .55; border-style: dashed; }
+.lbl.poi { border-color: var(--accent); }
+.lbl small { color: var(--muted); margin-left: 4px; }
+
+/* link status dot */
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); vertical-align: 1px; }
+.dot.up { background: var(--ok); box-shadow: 0 0 6px var(--ok); } .dot.down { background: var(--bad); } .dot.off { background: #555; }
+
+/* busy / loading */
+.busy { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 50; display: flex; gap: 10px; align-items: center;
+  background: rgba(14,12,11,.94); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: 13px; }
+.busy .bar { width: 140px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.busy .bar div { height: 100%; width: 0; background: var(--accent); transition: width .1s; }
+.loading { position: fixed; inset: 0; display: grid; place-items: center; background: var(--bg); color: var(--muted); font-size: 15px; z-index: 100; }

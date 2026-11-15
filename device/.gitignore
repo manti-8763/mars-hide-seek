@@ -1,0 +1,17 @@
+artifact.html
+data/*.txt
+
+# 데이터 생성 도구의 다운로드 캐시
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 편집기·OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
